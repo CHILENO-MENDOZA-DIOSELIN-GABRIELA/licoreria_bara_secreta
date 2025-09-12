@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Editar Cliente</h2>
+
+<form method="POST" class="card p-4 shadow">
+    <div class="mb-3">
+        <label>Nombre</label>
+        <input type="text" name="nombre" value="{{ cliente.nombre }}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Correo</label>
+        <input type="email" name="correo" value="{{ cliente.correo }}" class="form-control" required>
+    </div>
+    <button class="btn btn-primary">Guardar Cambios</button>
+    <a href="{{ url_for('clientes') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
