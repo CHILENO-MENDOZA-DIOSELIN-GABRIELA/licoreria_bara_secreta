@@ -1,8 +1,54 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="text-center">
-    <h1 class="display-4">Bienvenido a Bara Secreta 🍷</h1>
-    <p class="lead">La licorería más exclusiva para quienes saben disfrutar de un buen trago.</p>
-    <a href="{{ url_for('productos') }}" class="btn btn-primary btn-lg mt-3">Ver Productos</a>
+<!-- Hero Section -->
+<div class="container d-flex flex-column justify-content-center align-items-center text-center" style="min-height: 70vh;">
+    <h1 class="display-3 fw-bold mb-3">Bienvenido a Bara Secreta 🍷</h1>
+    <p class="lead mb-4">La licorería más exclusiva para quienes saben disfrutar de un buen trago.</p>
+    <a href="{{ url_for('productos') }}" class="btn btn-primary btn-lg px-5 py-3 shadow-sm">Ver Productos</a>
+</div>
+
+<!-- Carrusel -->
+<div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{ url_for('static', filename='img/lico1.jpg') }}" class="d-block mx-auto w-50 rounded shadow" alt="Licor 1">
+    </div>
+    <div class="carousel-item">
+      <img src="{{ url_for('static', filename='img/lico2.jpg') }}" class="d-block mx-auto w-50 rounded shadow" alt="Licor 2">
+    </div>
+    <div class="carousel-item">
+      <img src="{{ url_for('static', filename='img/lico3.jpg') }}" class="d-block mx-auto w-50 rounded shadow" alt="Licor 3">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+    <span class="visually-hidden">Anterior</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+    <span class="visually-hidden">Siguiente</span>
+  </button>
+</div>
+
+<!-- Beneficios / Características -->
+<div class="container py-5">
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <i class="bi bi-basket-fill display-4 mb-2 text-primary"></i>
+            <h5 class="fw-bold">Variedad de Productos</h5>
+            <p>Encuentra los mejores vinos, licores y destilados seleccionados con cuidado.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+            <i class="bi bi-truck display-4 mb-2 text-primary"></i>
+            <h5 class="fw-bold">Entrega Rápida</h5>
+            <p>Servicio ágil y seguro para que tus bebidas lleguen a tiempo a tu puerta.</p>
+        </div>
+        <div class="col-md-4 mb-4">
+            <i class="bi bi-star-fill display-4 mb-2 text-primary"></i>
+            <h5 class="fw-bold">Calidad Premium</h5>
+            <p>Solo trabajamos con marcas reconocidas y productos de primera calidad.</p>
+        </div>
+    </div>
 </div>
 {% endblock %}
+

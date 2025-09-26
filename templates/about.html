@@ -1,11 +1,74 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="card shadow p-4">
-    <h2>Acerca de Nosotros</h2>
-    <p>
-        En <strong>Bara Secreta</strong> nos dedicamos a ofrecer licores de calidad premium. 
-        Nuestro compromiso es brindar a nuestros clientes una experiencia única con bebidas exclusivas 
-        y un servicio personalizado.
-    </p>
+<!-- Sección Acerca de / Hero -->
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0 rounded-4 p-5 bg-light">
+                <h1 class="display-5 fw-bold mb-4 text-center text-dark">Acerca de Bara Secreta</h1>
+                <p class="lead text-center mb-5 text-muted">
+                    En <strong>Bara Secreta</strong> nos dedicamos a ofrecer licores de calidad premium. 
+                    Nuestro compromiso es brindar a nuestros clientes una experiencia única con bebidas exclusivas 
+                    y un servicio personalizado.
+                </p>
+
+                <hr class="my-4">
+
+                <div class="row text-center mt-5 g-4">
+                    <div class="col-md-4">
+                        <div class="p-4 rounded-3 shadow-sm bg-white h-100 hover-scale">
+                            <i class="bi bi-basket-fill display-4 text-primary mb-3"></i>
+                            <h5 class="fw-bold mb-2">Variedad</h5>
+                            <p class="text-muted">Amplio catálogo de vinos, licores y destilados cuidadosamente seleccionados.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-4 rounded-3 shadow-sm bg-white h-100 hover-scale">
+                            <i class="bi bi-truck display-4 text-primary mb-3"></i>
+                            <h5 class="fw-bold mb-2">Entrega Rápida</h5>
+                            <p class="text-muted">Servicio ágil y confiable para recibir tus bebidas a tiempo.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-4 rounded-3 shadow-sm bg-white h-100 hover-scale">
+                            <i class="bi bi-star-fill display-4 text-primary mb-3"></i>
+                            <h5 class="fw-bold mb-2">Calidad Premium</h5>
+                            <p class="text-muted">Productos de primera calidad de marcas reconocidas y seleccionadas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección Equipo -->
+                <h2 class="display-6 fw-bold text-center mt-5 mb-4">Nuestro Equipo</h2>
+                <div class="row justify-content-center text-center g-4">
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm rounded-3">
+                            <img src="{{ url_for('static', filename='img/colbaradora1.png') }}" 
+                                 class="card-img-top rounded-circle mx-auto mt-3 d-block" 
+                                 style="width:150px; height:150px; object-fit:cover;" 
+                                 alt="Miembro 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Dioselin Chileno</h5>
+                                <p class="card-text text-muted">Fundadora & Gerente</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Estilos extra para animaciones hover -->
+<style>
+    .hover-scale {
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .hover-scale:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+    }
+</style>
 {% endblock %}
+

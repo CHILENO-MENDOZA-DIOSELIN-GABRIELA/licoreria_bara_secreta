@@ -1,9 +1,21 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from config import get_connection
 from werkzeug.security import generate_password_hash, check_password_hash
+from functools import wraps
 
 app = Flask(__name__)
-app.secret_key = "licoreria_bara_secreta"  # cámbialo por algo más seguro
+app.secret_key = "licoreria_bara_secreta"
+
+
+# ------------------ DECORADOR LOGIN REQUIRED ------------------
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if "user_id" not in session:
+            flash("Debes iniciar sesión para acceder a esta página.", "warning")
+            return redirect(url_for("login"))
+        return f(*args, **kwargs)
+    return decorated_function
 
 
 # ------------------ REGISTRO ------------------
@@ -77,6 +89,7 @@ def about():
 
 # ------------------ CRUD PRODUCTOS ------------------
 @app.route("/productos")
+@login_required
 def productos():
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
@@ -87,6 +100,7 @@ def productos():
 
 
 @app.route("/agregar_producto", methods=["POST"])
+@login_required
 def agregar_producto():
     nombre = request.form["nombre"]
     precio = request.form["precio"]
@@ -104,6 +118,7 @@ def agregar_producto():
 
 
 @app.route("/editar_producto/<int:id>", methods=["GET", "POST"])
+@login_required
 def editar_producto(id):
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
@@ -127,6 +142,7 @@ def editar_producto(id):
 
 
 @app.route("/eliminar_producto/<int:id>")
+@login_required
 def eliminar_producto(id):
     conn = get_connection()
     cursor = conn.cursor()
@@ -139,6 +155,7 @@ def eliminar_producto(id):
 
 # ------------------ CRUD CLIENTES ------------------
 @app.route("/clientes")
+@login_required
 def clientes():
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
@@ -149,6 +166,7 @@ def clientes():
 
 
 @app.route("/agregar_cliente", methods=["POST"])
+@login_required
 def agregar_cliente():
     nombre = request.form["nombre"]
     correo = request.form["correo"]
@@ -164,6 +182,7 @@ def agregar_cliente():
 
 
 @app.route("/editar_cliente/<int:id>", methods=["GET", "POST"])
+@login_required
 def editar_cliente(id):
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
@@ -186,6 +205,7 @@ def editar_cliente(id):
 
 
 @app.route("/eliminar_cliente/<int:id>")
+@login_required
 def eliminar_cliente(id):
     conn = get_connection()
     cursor = conn.cursor()
@@ -198,6 +218,7 @@ def eliminar_cliente(id):
 
 # ------------------ INVENTARIO ------------------
 @app.route("/inventario")
+@login_required
 def inventario():
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
@@ -208,5 +229,5 @@ def inventario():
 
 
 # ------------------ MAIN ------------------
-if __name__== "_main_":
+if __name__ == "__main__":
     app.run(debug=True)
